@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <title>Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Mobile Phone Frame */
+        .phone-container {
+            width: 375px;
+            height: 700px;
+            border-radius: 30px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: #ffffff; /* White background for the form */
+            overflow: hidden;
+        }
+
+        /* Notch */
+        .notch {
+            position: absolute;
+            background-color: #ffffff; /* White background for the form */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Screen Content */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Logo */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chef-hat {
+            width: 100px;
+            height: 80px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #FF5722;
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 0;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Sign Up Button */
+        .signup-button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0 20px;
+        }
+        h3{
+            text-align: center;
+            font-weight: normal;
+            margin: 3px;
+            padding: 5px;
+        }
+
+        /* Continue with Google */
+        .google-button {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: normal;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .google-icon {
+            width: 20px; /* Adjust size as needed */
+            height: 20px;
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Login Prompt */
+        .login-prompt {
+            text-align: center;
+            margin-top: auto;
+            padding-bottom: 20px;
+        }
+
+        .login-prompt a {
+            color: #FF5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Home Indicator */
+        .home-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Phone Frame -->
+    <div class="phone-container">
+        <div class="notch"></div>
+        <div class="screen">
+
+            <div class="back-button">&#8249;</div>
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="images/toque.png" alt="Chef's Hat" class="chef-hat">
+                
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab" id="loginTab">Login</div>
+                <div class="tab active">Sign-up</div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" placeholder="Username">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-input" placeholder="example@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" placeholder="Password">
+                </div>
+
+                <button class="signup-button">Sign Up</button>
+                <h3>Or</h3>
+                <button class="google-button">
+                    <img src="images/google icon.png" alt="Google Icon" class="google-icon"> <!-- Add Google icon here -->
+                    Continue with Google
+                </button>            
+            </div>
+
+            <!-- Login Prompt -->
+            <div class="login-prompt">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
+
+            <!-- Home Indicator -->
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add event listeners for navigation
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    
+        // Sign Up button functionality
+        document.querySelector('.signup-button').addEventListener('click', function() {
+            const username = document.querySelector('input[placeholder="Username"]').value;
+            const email = document.querySelector('input[placeholder="example@gmail.com"]').value;
+            const password = document.querySelector('input[placeholder="Password"]').value;
+    
+            // Username validation
+            if (!username) {
+                alert('Please enter a username');
+                return;
+            }
+    
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+    
+            // Password validation (minimum 8 characters, at least one uppercase, one lowercase, one number, and one special character)
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character');
+                return;
+            }
+    
+            // If validations pass, navigate to home page
+            window.location.href = 'preferences.html';
+        });
+
+    
+        document.getElementById('loginTab').addEventListener('click', function() {
+            window.location.href = 'login.html'; // Navigate to login page
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Recipes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Mobile Phone Frame */
+        .phone-container {
+            width: 375px;
+            height: 700px;
+            border-radius: 30px;
+            padding: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            position: relative;
+         
+        }
+
+        /* Notch */
+        .notch {
+            position: absolute;
+            background-color: #111;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Screen Content */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Navigation */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+           
+        }
+
+        .back-button {
+            margin-right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .nav-link {
+            padding: 5px 10px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-link.active {
+            color: #FF5722;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #FF5722;
+        }
+
+        /* Content Container */
+        .content {
+            flex: 1;
+            overflow: hidden;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        /* Recipe Grid */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        
+        .recipe-card:active {
+            transform: scale(0.98);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .recipe-name {
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+       
+
+        /* Home Indicator */
+        .home-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Phone Frame -->
+    <div class="phone-container">
+        <div class="notch"></div>
+        <div class="screen">
+
+            <!-- Header Navigation -->
+            <div class="header">
+                <div class="back-button">&#8249;</div>
+                <div class="nav-links">
+                    <a href="home.html" class="nav-link">Home</a>
+                    <a href="explore.html" class="nav-link active">Explore</a>
+                    <a href="settings.html" class="nav-link">Settings</a>
+                </div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content">
+                <!-- Section Title -->
+                <div class="section-title">Trending Recipes</div>
+
+                <!-- Recipe Grid -->
+                <div class="recipe-grid">
+                    <!-- Recipe 1 -->
+                    <div class="recipe-card">
+                        <img src="images/spaghetti-puttanesca.jpg" alt="Spaghetti Puttanesca" class="recipe-image">
+                        <div class="recipe-name">Spaghetti Puttanesca</div>
+                    </div>
+
+                    <!-- Recipe 2 -->
+                    <div class="recipe-card">
+                        <img src="images/alfredo.jpg" alt="Fettuccine Alfredo" class="recipe-image">
+                        <div class="recipe-name">Fettuccine Alfredo</div>
+                    </div>
+
+                    <!-- Recipe 3 -->
+                    <div class="recipe-card">
+                        <img src="images/pita and hummus.jpg" alt="Pita with hummus" class="recipe-image">
+                        <div class="recipe-name">Pita with hummus</div>
+                    </div>
+
+                    <!-- Recipe 4 -->
+                    <div class="recipe-card" >
+                        <a href="recipe.html" style="text-decoration: none";>
+                            <img src="images/smoothie.jpeg" alt="Berry Blast protein smoothie" class="recipe-image" height="200">
+                            <div class="recipe-name">Berry Blast protein smoothie</div>
+                        </a>
+                    </div>
+
+                    <!-- Recipe 5 -->
+                    <div class="recipe-card">
+                        <img src="images/yogurt-peach-parfaits-10.jpg" alt="Yoghurt peach Parfait" class="recipe-image">
+                        <div class="recipe-name">Yoghurt peach Parfait</div>
+                    </div>
+
+                    <!-- Recipe 6 -->
+                    <div class="recipe-card">
+                        <img src="images/curry.jpg" alt="Tofu and lentil curry" class="recipe-image">
+                        <div class="recipe-name">Tofu and lentil curry</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Indicator -->
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add event listeners for navigation
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

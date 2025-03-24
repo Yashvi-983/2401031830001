@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff; /* White background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* Mobile Phone Frame */
+        .phone-container {
+            width: 375px;
+            height: 700px;
+            border-radius: 30px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: #ffffff; /* White background for the form */
+            overflow: hidden;
+        }
+
+        /* Notch */
+        .notch {
+            position: absolute;
+            background-color: #ffffff; /* White background for the form */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Screen Content */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            color: #333; /* Dark text for readability */
+        }
+
+        /* Back Button */
+        .back-button {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* Title */
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Welcome Message */
+        .welcome-message {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.5;
+            padding-left: 10px;
+        }
+
+        /* Home Indicator */
+        .home-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Phone Frame -->
+    <div class="phone-container">
+        <div class="notch"></div>
+        <div class="screen">
+            <!-- Back Button -->
+            <div class="back-button">&#8249;</div>
+
+            <!-- Title -->
+            <div class="title">Privacy Policy</div>
+
+            <!-- Welcome Message -->
+            <div class="welcome-message">
+                Welcome to SmartChef.com. Your privacy is important to us, and this Privacy Policy outlines how we collect, use, and protect the personal information you provide to us. By using our website, you consent to the data practices described in this Privacy Policy.
+            </div>
+
+            <!-- Information Sections -->
+            <div class="section">
+                <div class="section-title">1. Personal Identifiers:</div>
+                <div class="section-content">Such as your name and email address.</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">2. Internet Activity:</div>
+                <div class="section-content">We automatically collect information such as your IP address, browser type, access times, and referring website addresses.</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">3. Device Information:</div>
+                <div class="section-content">Such as your device type, operating system, and unique device identifiers.</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">4. App Usage Data:</div>
+                <div class="section-content">Details of how you use our mobile app, including the features you engage with.</div>
+            </div>
+
+            <!-- Home Indicator -->
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+    <script>
+        // Add event listeners for navigation
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.location.href = 'settings.html';
+        });
+    </script>
+</body>
+</html>

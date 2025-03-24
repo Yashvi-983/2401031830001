@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Mobile Phone Frame */
+        .phone-container {
+            width: 375px;
+            height: 700px;
+            border-radius: 30px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Notch */
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* Screen Content */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* Back Button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Login Card */
+        .login-card {
+            background-color: white;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* Logo */
+        .logo-container {
+            margin: 20px 0 30px;
+            text-align: center;
+        }
+        /* Tabs */
+        .tabs {
+            display: flex;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 90%;
+            height: 2px;
+            background-color: #FF5722;
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+            /* Form */
+        .form-container {
+            width: 100%;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 8px 0;
+            font-size: 16px;
+            outline: none;
+            background-color: transparent;
+        }
+
+        /* Login Button */
+        .login-button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0 20px;
+        }
+
+        /* Forgot Password */
+        .forgot-password {
+            text-align: center;
+            margin: 40px 0 30px;
+        }
+
+        .forgot-password a {
+            color: #FF5722;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Sign Up Prompt */
+        .signup-prompt {
+            text-align: center;
+            margin-top: auto;
+            padding-bottom: 20px;
+        }
+
+        .signup-prompt a {
+            color: #FF5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Home Indicator */
+        .home-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Phone Frame -->
+    <div class="phone-container">
+        <div class="notch"></div>
+        <div class="screen">
+
+            <!-- Back Button -->
+            <div class="back-button">&#8249;</div>
+
+            <div id="forgotPasswordModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-button" id="closeModal">&times;</span>
+                    <h2>Forgot Password</h2>
+                    <p>Please enter your email address to receive password reset instructions.</p>
+                    <input type="email" id="forgotEmail" placeholder="example@gmail.com" required>
+                    <button id="sendInstructions">Send Instructions</button>
+                </div>
+            </div>
+
+            <!-- Login Card -->
+            <div class="login-card">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <img src="images/toque.png" alt="Logo" width="100" >
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <div class="tab active">Login</div>
+                    <div class="tab">Sign-up</div>
+                </div>
+
+                <!-- Login Form -->
+                <div class="form-container">
+                    <div class="form-group">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-input" placeholder="example@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="password">
+                    </div>
+
+                    <button class="login-button">Login</button>
+
+                    <div class="forgot-password">
+                        <a href="forgot_password.html">Forgot password?</a>
+                    </div>
+                </div>
+
+                <!-- Sign Up Prompt -->
+                <div class="signup-prompt">
+                    Don't have an account? <a href="signup.html">Sign up</a>
+                </div>
+            </div>
+
+            <!-- Home Indicator -->
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.forgot-password a').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('forgotPasswordModal').style.display = 'block';
+        });
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        });
+
+        document.getElementById('sendInstructions').addEventListener('click', function() {
+            const email = document.getElementById('forgotEmail').value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            alert('Password reset instructions have been sent to ' + email);
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        });
+        document.querySelector('.back-button').addEventListener('click', function() {
+            window.location.href = 'app.html';
+        });
+
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            if (this.textContent === 'Login') {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            } else {
+                window.location.href = 'signup.html';
+            }
+        });
+    });
+
+    // Login button functionality
+    document.querySelector('.login-button').addEventListener('click', function() {
+        const email = document.querySelector('input[type="email"]').value;
+        const password = document.querySelector('input[type="password"]').value;
+
+        // Email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+
+        // Password validation (minimum 6 characters)
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long');
+            return;
+        }
+
+        // If validations pass, navigate to home page
+        window.location.href = 'preferences.html';
+    });
+</script>
+    </script>
+</body>
+</html>
